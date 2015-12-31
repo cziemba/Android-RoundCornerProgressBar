@@ -67,6 +67,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     private int colorSecondaryProgress;
 
     private boolean isReverse;
+    private boolean ignoreDraw = false;
 
     private OnProgressChangedListener progressChangedListener;
 
@@ -174,6 +175,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
 
     // Redraw all view
     protected void drawAll() {
+        if (ignoreDraw) return;
         drawBackgroundProgress();
         drawPadding();
         drawProgressReverse();
@@ -185,6 +187,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     // Draw progress background
     @SuppressWarnings("deprecation")
     private void drawBackgroundProgress() {
+        if (ignoreDraw) return;
         GradientDrawable backgroundDrawable = createGradientDrawable(colorBackground);
         int newRadius = radius - (padding / 2);
         backgroundDrawable.setCornerRadii(new float[]{newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius, newRadius});
@@ -204,14 +207,17 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     }
 
     private void drawPrimaryProgress() {
+        if (ignoreDraw) return;
         drawProgress(layoutProgress, max, progress, totalWidth, radius, padding, colorProgress, isReverse);
     }
 
     private void drawSecondaryProgress() {
+        if (ignoreDraw) return;
         drawProgress(layoutSecondaryProgress, max, secondaryProgress, totalWidth, radius, padding, colorSecondaryProgress, isReverse);
     }
 
     private void drawProgressReverse() {
+        if (ignoreDraw) return;
         setupReverse(layoutProgress);
         setupReverse(layoutSecondaryProgress);
     }
@@ -235,6 +241,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     }
 
     private void drawPadding() {
+        if (ignoreDraw) return;
         layoutBackground.setPadding(padding, padding, padding, padding);
     }
 
@@ -266,6 +273,14 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
         drawProgressReverse();
         drawPrimaryProgress();
         drawSecondaryProgress();
+    }
+
+    public boolean isIgnoreDraw() {
+        return ignoreDraw;
+    }
+
+    public void setIgnoreDraw(boolean ignoreDraw) {
+        this.ignoreDraw = ignoreDraw;
     }
 
     public int getRadius() {

@@ -114,6 +114,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     @Override
     protected void drawProgress(LinearLayout layoutProgress, float max, float progress, float totalWidth,
                                 int radius, int padding, int colorProgress, boolean isReverse) {
+        if (isIgnoreDraw()) return;
         GradientDrawable backgroundDrawable = createGradientDrawable(colorProgress);
         int newRadius = radius - (padding / 2);
         if (isReverse && progress != max)
@@ -136,6 +137,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
 
     @Override
     protected void onViewDraw() {
+        if (isIgnoreDraw()) return;
         drawImageIcon();
         drawImageIconSize();
         drawImageIconPadding();
@@ -143,10 +145,12 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     }
 
     private void drawImageIcon() {
+        if (isIgnoreDraw()) return;
         ivProgressIcon.setImageResource(iconResource);
     }
 
     private void drawImageIconSize() {
+        if (isIgnoreDraw()) return;
         if (iconSize == -1)
             ivProgressIcon.setLayoutParams(new LayoutParams(iconWidth, iconHeight));
         else
@@ -154,6 +158,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     }
 
     private void drawImageIconPadding() {
+        if (isIgnoreDraw()) return;
         if (iconPadding == -1 || iconPadding == 0) {
             ivProgressIcon.setPadding(iconPaddingLeft, iconPaddingTop, iconPaddingRight, iconPaddingBottom);
         } else {
@@ -164,6 +169,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
 
     @SuppressWarnings("deprecation")
     private void drawIconBackgroundColor() {
+        if (isIgnoreDraw()) return;
         GradientDrawable iconBackgroundDrawable = createGradientDrawable(colorIconBackground);
         int radius = getRadius() - (getPadding() / 2);
         iconBackgroundDrawable.setCornerRadii(new float[]{radius, radius, 0, 0, 0, 0, radius, radius});
