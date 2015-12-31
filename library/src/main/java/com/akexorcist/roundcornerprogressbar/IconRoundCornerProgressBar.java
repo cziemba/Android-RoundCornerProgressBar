@@ -180,7 +180,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
 
     public void setIconImageResource(int resId) {
         this.iconResource = resId;
-        postInvalidate();
+        drawImageIcon();
     }
 
     public int getIconSize() {
@@ -190,7 +190,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconSize(int size) {
         if (size >= 0)
             this.iconSize = size;
-        postInvalidate();
+        drawImageIconSize();
     }
 
     public int getIconPadding() {
@@ -200,7 +200,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconPadding(int padding) {
         if (padding >= 0)
             this.iconPadding = padding;
-        postInvalidate();
+        drawImageIconPadding();
     }
 
     public int getIconPaddingLeft() {
@@ -210,7 +210,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconPaddingLeft(int padding) {
         if (padding > 0)
             this.iconPaddingLeft = padding;
-        postInvalidate();
+        drawImageIconPadding();
     }
 
     public int getIconPaddingRight() {
@@ -220,7 +220,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconPaddingRight(int padding) {
         if (padding > 0)
             this.iconPaddingRight = padding;
-        postInvalidate();
+        drawImageIconPadding();
     }
 
     public int getIconPaddingTop() {
@@ -230,7 +230,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconPaddingTop(int padding) {
         if (padding > 0)
             this.iconPaddingTop = padding;
-        postInvalidate();
+        drawImageIconPadding();
     }
 
     public int getIconPaddingBottom() {
@@ -240,7 +240,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
     public void setIconPaddingBottom(int padding) {
         if (padding > 0)
             this.iconPaddingBottom = padding;
-        postInvalidate();
+        drawImageIconPadding();
     }
 
     public int getColorIconBackground() {
@@ -249,7 +249,7 @@ public class IconRoundCornerProgressBar extends BaseRoundCornerProgressBar imple
 
     public void setIconBackgroundColor(int color) {
         this.colorIconBackground = color;
-        postInvalidate();
+        drawIconBackgroundColor();
     }
 
     @Override

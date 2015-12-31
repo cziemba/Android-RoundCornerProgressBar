@@ -263,7 +263,9 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
 
     public void setReverse(boolean isReverse) {
         this.isReverse = isReverse;
-        postInvalidate();
+        drawProgressReverse();
+        drawPrimaryProgress();
+        drawSecondaryProgress();
     }
 
     public int getRadius() {
@@ -273,7 +275,9 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     public void setRadius(int radius) {
         if (radius >= 0)
             this.radius = radius;
-        postInvalidate();
+        drawBackgroundProgress();
+        drawPrimaryProgress();
+        drawSecondaryProgress();
     }
 
     public int getPadding() {
@@ -283,7 +287,9 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
     public void setPadding(int padding) {
         if (padding >= 0)
             this.padding = padding;
-        postInvalidate();
+        drawPadding();
+        drawPrimaryProgress();
+        drawSecondaryProgress();
     }
 
     public float getMax() {
@@ -295,7 +301,8 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
             this.max = max;
         if (this.progress > max)
             this.progress = max;
-        postInvalidate();
+        drawPrimaryProgress();
+        drawSecondaryProgress();
     }
 
     public float getLayoutWidth() {
@@ -313,7 +320,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
             this.progress = max;
         else
             this.progress = progress;
-        postInvalidate();
+        drawPrimaryProgress();
         if(progressChangedListener != null)
             progressChangedListener.onProgressChanged(getId(), this.progress, true, false);
     }
@@ -335,7 +342,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
             this.secondaryProgress = max;
         else
             this.secondaryProgress = secondaryProgress;
-        postInvalidate();
+        drawSecondaryProgress();
         if(progressChangedListener != null)
             progressChangedListener.onProgressChanged(getId(), this.secondaryProgress, false, true);
     }
@@ -346,7 +353,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
 
     public void setProgressBackgroundColor(int colorBackground) {
         this.colorBackground = colorBackground;
-        postInvalidate();
+        drawBackgroundProgress();
     }
 
     public int getProgressColor() {
@@ -355,7 +362,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
 
     public void setProgressColor(int colorProgress) {
         this.colorProgress = colorProgress;
-        postInvalidate();
+        drawPrimaryProgress();
     }
 
     public int getSecondaryProgressColor() {
@@ -364,7 +371,7 @@ public abstract class BaseRoundCornerProgressBar extends LinearLayout {
 
     public void setSecondaryProgressColor(int colorSecondaryProgress) {
         this.colorSecondaryProgress = colorSecondaryProgress;
-        postInvalidate();
+        drawSecondaryProgress();
     }
 
     public void setOnProgressChangedListener(OnProgressChangedListener listener) {
